@@ -34,8 +34,6 @@ conn = httplib.HTTPConnection(headers["Host"])
 capacity = len(config.COURSE_CODE)
 selected = [False]*capacity
 while True:
-    if not (False in selected):
-        break
     for i in range(capacity):
         if not selected[i]:
             paramsStr["jxbid"] = "%d%s00-%s" % (config.TERM, config.COURSE_CODE[i], config.CLASS_NO[i])
@@ -54,7 +52,9 @@ while True:
                             selected[i] = True
                             break
             except Exception, e:
-                fLog.write(e)
+                fLog.write(str(e))
                 fLog.flush()
-            time.sleep(config.INTERVAL)
+    if not (False in selected):
+        break
+    time.sleep(config.INTERVAL)
 fLog.close()
