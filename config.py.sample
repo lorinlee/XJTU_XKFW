@@ -1,0 +1,19 @@
+# -*- coding: UTF-8 -*-
+
+# 课程代码，从选课网址复制
+COURSE_CODE = ["C00301", "Y10011"]
+# 班级代码，01班填001
+CLASS_NO = ["001", "004"]
+# 年份
+YEAR = 2016
+# 未知
+UNKNOWN = 1
+# 登录cookie，请求里找
+COOKIE = ""
+# 停止对某门课的请求的条件，返回中含以下字符串
+STOP_CONDITION = ["xksj", "冲突", "已经选择"]
+# 间隔时间，秒为单位
+INTERVAL = 1
+
+## 下面配置可酌情修改
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36"
