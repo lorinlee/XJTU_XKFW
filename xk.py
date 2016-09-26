@@ -40,17 +40,21 @@ while True:
         if not selected[i]:
             paramsStr["jxbid"] = "%d%s00-%s" % (config.TERM, config.COURSE_CODE[i], config.CLASS_NO[i])
             params = urllib.urlencode(paramsStr)
-            conn.request(method="GET", url="%s?%s"%(path, params), headers=headers)
-            response = conn.getresponse()
-            content = response.read()
-            log = "[%s] %s %s %s %s\n" % (time.strftime("%Y-%m-%d %H:%M:%S"), config.COURSE_CODE[i], response.status, response.reason, content)
-            print log
-            fLog.write(log)
-            fLog.flush()
-            if response.status == 200:
-                for cond in config.STOP_CONDITION:
-                    if cond in content:
-                        selected[i] = True
-                        break
+            try:
+                conn.request(method="GET", url="%s?%s"%(path, params), headers=headers)
+                response = conn.getresponse()
+                content = response.read()
+                log = "[%s] %s %s %s %s\n" % (time.strftime("%Y-%m-%d %H:%M:%S"), config.COURSE_CODE[i], response.status, response.reason, content)
+                print log
+                fLog.write(log)
+                fLog.flush()
+                if response.status == 200:
+                    for cond in config.STOP_CONDITION:
+                        if cond in content:
+                            selected[i] = True
+                            break
+            except Exception, e:
+                fLog.write(e)
+                fLog.flush()
             time.sleep(config.INTERVAL)
 fLog.close()
