@@ -38,7 +38,7 @@ while True:
         break
     for i in range(capacity):
         if not selected[i]:
-            paramsStr["jxbid"] = "%d%d%s00-%s" % (config.YEAR, config.UNKNOWN, config.COURSE_CODE[i], config.CLASS_NO[i])
+            paramsStr["jxbid"] = "%d%s00-%s" % (config.TERM, config.COURSE_CODE[i], config.CLASS_NO[i])
             params = urllib.urlencode(paramsStr)
             conn.request(method="GET", url="%s?%s"%(path, params), headers=headers)
             response = conn.getresponse()
